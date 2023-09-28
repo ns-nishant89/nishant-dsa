@@ -3,13 +3,13 @@ class Solution {
         // Using BFS
         int n = graph.length;
         int[] indegree = new int[n];
-        List<List<Integer>> g = new ArrayList<>(n);
+        List<List<Integer>> adjRev = new ArrayList<>(n);
         for (int i = 0; i < n; i++) {
-            g.add(new ArrayList<>());
+            adjRev.add(new ArrayList<>());
         }
         for (int i = 0; i < n; i++) {
-            for (int itt : graph[i]) {
-                g.get(itt).add(i); // reverse the direction of node
+            for (int it : graph[i]) {
+                adjRev.get(it).add(i); // reverse the direction of node
                 indegree[i]++;
             }
         }
@@ -19,17 +19,18 @@ class Solution {
                 q.add(i);
             }
         }
-        List<Integer> ans = new ArrayList<>();
+        List<Integer> safenode = new ArrayList<>();
         while (!q.isEmpty()) {
-            int node = q.poll();
-            ans.add(node);
-            for (int it : g.get(node)) {
+            int node = q.peek();
+            q.remove();
+            safenode.add(node);
+            for (int it : adjRev.get(node)) {
                 indegree[it]--;
                 if (indegree[it] == 0)
                     q.add(it);
             }
         }
-        ans.sort(null);
-        return ans;
+        Collections.sort(safenode);
+        return safenode;
     }
 }
