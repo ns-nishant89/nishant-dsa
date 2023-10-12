@@ -16,10 +16,10 @@ class Solution {
         for(int i = 0; i < m; i++){
             int cityA = edges[i][0];
             int cityB = edges[i][1];
-            int distance = edges[i][2];
+            int dist = edges[i][2];
 
-            distances[cityA][cityB] = distance;
-            distances[cityB][cityA] = distance;
+            distances[cityA][cityB] = dist;
+            distances[cityB][cityA] = dist;
         }
 
         // Set the distance from a city to itself as 0.
@@ -40,24 +40,24 @@ class Solution {
         }
 
         // Initialize variables to keep track of the city with the least number of reachable cities.
-        int minReachableCities = n;
-        int cityWithMinReachable = -1;
+        int cntcity = n;
+        int cityno = -1;
 
         // Iterate through each city and count how many cities are reachable within the given maximum distance.
         for(int city = 0; city < n; city++){
-            int reachableCount = 0;
+            int cnt = 0;
             for(int adjacentCity = 0; adjacentCity < n; adjacentCity++){
                 if(distances[city][adjacentCity] <= maxDistance){
-                    reachableCount++;
+                    cnt++;
                 }
             }
             // If the current city has fewer reachable cities, update the variables.
-            if(reachableCount <= minReachableCities){
-                minReachableCities = reachableCount;
-                cityWithMinReachable = city;
+            if(cnt <= cntcity){
+                cntcity = cnt;
+                cityno= city;
             }
         }
         // Return the city with the least number of reachable cities within the maximum distance.
-        return cityWithMinReachable;       
+        return cityno;       
     }
 }
