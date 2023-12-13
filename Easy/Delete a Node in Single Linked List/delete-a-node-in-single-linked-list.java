@@ -102,7 +102,7 @@ class GfG
 	    cnt++;
 	    if(cnt==x){
 	        prev.next = prev.next.next;
-	        temp = null;
+	       
 	        break;
 	    }
 	    prev = temp;
