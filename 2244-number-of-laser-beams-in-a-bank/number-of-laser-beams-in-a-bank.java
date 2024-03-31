@@ -1,6 +1,5 @@
 class Solution {
     public int numberOfBeams(String[] bank) {
-        List<Integer> counts = new ArrayList<>();
         int rows = bank.length;
         int cols = bank[0].length();
         int lastcount=0;
